@@ -49,27 +49,31 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php $i = 0;?>
+                            @foreach($data as $key=>$user)
+                                <?php $i++;?>
                                 <tr id="vacationRow">
-                                    <th scope="row"></th>
-                                    <td>Moahmed Osama</td>
-                                    <td>mosama@dt.com</td>
-                                    <td>Active</td>
-                                    <td>Admin</td>
+                                    <th scope="row">{{$i}}</th>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->status}}</td>
+                                    <td>{{$user->rloe_name}}</td>
                                     <td>
                                         <!-- Edit -->
                                         <a class="btn btn-outline-info btn-sm"
                                             href="#">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                              
+
                                         <!-- Delete -->
                                         <a class="modal-effect btn btn-outline-danger btn-sm" data-effect="effect-scale"
                                             data-toggle="modal" href="#">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
-                                    
+
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div><!-- bd -->
