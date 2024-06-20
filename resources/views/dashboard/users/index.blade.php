@@ -57,11 +57,23 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->status}}</td>
-                                    <td>{{$user->rloe_name}}</td>
                                     <td>
+                                        @if(!empty($user->getRoleNames()))
+                                            @foreach($user->getRoleNames() as $v)
+                                                <label class="badge badge-secondary text-dark">{{ $v }}</label>
+                                            @endforeach
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <!-- Show -->
+                                        <a class="btn btn-outline-success btn-sm"
+                                           href="{{ route('users.show',$user->id) }}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+
                                         <!-- Edit -->
                                         <a class="btn btn-outline-info btn-sm"
-                                            href="#">
+                                           href="{{ route('users.edit',$user->id) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
 

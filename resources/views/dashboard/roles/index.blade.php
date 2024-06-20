@@ -37,48 +37,31 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table id="vacationTable" class="table key-buttons text-md-nowrap">
-                            <thead>
-                                <tr>
-                                    <th class="border-bottom-0">#</th>
-                                    <th class="border-bottom-0">أسم الصلاحية</th>
-                                    <th class="border-bottom-0">العمليات</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php $i = 0;?>
+                        <table class="table table-striped table-hover">
+                            <tr>
+                                <th>أسم الصلاحية</th>
+                                <th width="280px">العمليات</th>
+                            </tr>
                             @foreach ($roles as $key => $role)
-                                    <?php $i++;?>
                                 <tr>
-                                    <td>{{ ++$i }}</td>
                                     <td>{{ $role->name }}</td>
                                     <td>
-                                        <!-- Edit -->
-                                        <a class="btn btn-outline-info btn-sm"
-                                           href="#">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                        <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
+                                            <a class="btn btn-info" href="{{ route('roles.show', $role->id) }}">عرض الصلاحية</a>
+                                                <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">تعديل</a>
 
-                                        <!-- Delete -->
-                                        <a class="modal-effect btn btn-outline-danger btn-sm" data-effect="effect-scale"
-                                           data-toggle="modal" href="#">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
 
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">حذف</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
-                            </tbody>
                         </table>
-                    </div><!-- bd -->
-                </div><!-- bd -->
-            </div><!-- bd -->
-        </div>
-    </div>
 
-    <div class="main-navbar-backdrop"></div>
-
-@endsection
+                        {!! $roles->render() !!}
+                        @endsection
 
 @section('scripts')
     <!-- Internal Select2.min js -->

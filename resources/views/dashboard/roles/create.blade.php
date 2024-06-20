@@ -24,7 +24,7 @@
                     <h4 class="card-title mb-1 text-center">أدخل صلاحية جديده</h4>
                 </div>
                 <div class="card-body pt-0">
-                    {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
+                    <form action="{{ route('roles.store') }}" method="POST">
                         @csrf
 
                         {{-- Success Message --}}
@@ -36,7 +36,7 @@
                             {{-- Name Input --}}
                             <div class="form-group col-6">
                                 <label for="name">أسم الصلاحية</label>
-                                {!! Form::text('name', null, array('class' => 'form-control')) !!}
+                                <input type="text" name="name" class="form-control" placeholder="Name">
                                 <div id="name-error" class="error-message alert alert-danger d-none"></div>
                             </div>
                         </div>
@@ -45,12 +45,12 @@
                                 <li><a href="#">أضف صلاحية</a>
                                     <ul>
                                         <li>
-
-                                            @foreach($permission as $value)
-                                                <label
-                                                    style="font-size: 16px;">{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                                                    {{ $value->name }}</label>
-                                            @endforeach
+                                    @foreach ($permission as $value)
+                                        <label>
+                                            <input type="checkbox" name="permission[]" value="{{ $value->id }}" class="name">
+                                            {{ $value->name }}</label>
+                                        <br />
+                                    @endforeach
                                         </li>
                                     </ul>
                                 </li>

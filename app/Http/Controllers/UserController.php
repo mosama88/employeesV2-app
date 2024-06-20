@@ -25,30 +25,32 @@ class UserController extends Controller
         return view('dashboard.users.create',compact('roles'));
     }
 
+
+
+
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'status' => 'required',
-            'role_name' => 'required',
+            'name' => 'required|unique:roles,name',
+            'permission' => 'required|array',
+            'roles' => 'required',
+            'status' => 'required'
         ]);
 
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
+        $role = Role::create(['name' => $request->input('name')]);
 
-        $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+        // Sync permissions by name
+        $role->syncPermissions($request->input('permission'));
 
-        return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+        return redirect()->route('roles.index')
+            ->with('success', 'Role created successfully');
     }
+
 
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.show',compact('user'));
+        return view('dashboard.users.show',compact('user'));
     }
 
     public function edit($id)
@@ -66,7 +68,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'status' => 'required',
         ]);
 
         $input = $request->all();
@@ -83,13 +85,13 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+            ->with('success','User updated successfully');
     }
 
     public function destroy($id)
     {
         User::find($id)->delete();
         return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+            ->with('success','User deleted successfully');
     }
 }

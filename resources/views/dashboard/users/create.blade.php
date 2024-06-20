@@ -24,9 +24,22 @@
         <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
             <div class="card box-shadow-0">
                 <div class="card-header">
-                    @include('dashboard.messages_alert')
+{{--                    @include('dashboard.messages_alert')--}}
                     <h4 class="card-title mb-1 text-center">أدخل بيانات المستخدم</h4>
                 </div>
+
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+
                 <div class="card-body pt-0">
                     <form id="employeeForm" action="{{ route('users.store') }}" method="POST">
                         @csrf
@@ -67,9 +80,13 @@
 
                             {{-- Roles Input --}}
                             <div class="form-group col-6">
-                                <label for="role_name">صلاحية المستخدم</label>
-                                {!! Form::select('role_name[]', $roles, null, ['class' => 'form-control testselect2', 'multiple' => 'multiple']) !!}
-                                <div id="role_name-error" class="error-message alert alert-danger d-none"></div>
+                                <label for="roles">صلاحية المستخدم</label>
+                                <select class="form-control multiple" multiple name="roles[]">
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role }}">{{ $role }}</option>
+                                    @endforeach
+                                </select>
+                                <div id="roles-error" class="error-message alert alert-danger d-none"></div>
                             </div>
 
                             {{-- Status Input --}}
