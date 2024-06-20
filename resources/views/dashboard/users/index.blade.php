@@ -65,13 +65,14 @@
                                             <i class="fas fa-edit"></i>
                                         </a>
 
-                                        <!-- Delete -->
-                                        <a class="modal-effect btn btn-outline-danger btn-sm" data-effect="effect-scale"
-                                            data-toggle="modal" href="#">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
+                                        {{-- Delete --}}
+                                        <a class="modal-effect btn btn-outline-danger btn-sm"
+                                           data-effect="effect-scale" data-toggle="modal"
+                                           href="#delete{{ $user->id }}">
+                                            <i class="fas fa-trash-alt"></i></a>
 
                                     </td>
+                                        @include('dashboard.users.delete')
                                 </tr>
                             @endforeach
                             </tbody>

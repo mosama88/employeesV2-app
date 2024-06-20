@@ -25,7 +25,7 @@
                 // Slowly fade out the success message after 5 seconds
                 setTimeout(function() {
                     $('#successMessage').fadeOut('slow', function() {
-                        window.location.href = "/employees";
+                        window.location.href = "/users";
                     });
                 }, 1000); // 1000 milliseconds = 1 second
             },
