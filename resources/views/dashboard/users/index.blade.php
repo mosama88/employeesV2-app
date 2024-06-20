@@ -23,7 +23,7 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         <div class="col-sm-6 col-md-3 mb-4">
-                            <a class="btn btn-outline-primary btn-block" href="#">
+                            <a class="btn btn-outline-primary btn-block" href="{{route('users.create')}}">
                                 <i class="fas fa-plus-square"></i>
                                 أضافة مستخدم
                             </a>

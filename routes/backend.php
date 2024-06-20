@@ -85,15 +85,16 @@ Route::middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
 
 });
 
-Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->middleware(['auth', 'verified']);
-Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware(['auth', 'verified']);
-Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware(['auth', 'verified']);
-Route::put('password', [PasswordController::class, 'update'])->name('password.update')->middleware(['auth', 'verified']);
+
 
 Route::middleware('auth')->group(function () {
     // Our resource routes
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->middleware(['auth', 'verified']);
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware(['auth', 'verified']);
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware(['auth', 'verified']);
+    Route::put('password', [PasswordController::class, 'update'])->name('password.update')->middleware(['auth', 'verified']);
 });
 
 require __DIR__ . '/auth.php';

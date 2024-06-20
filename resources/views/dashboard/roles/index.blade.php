@@ -23,7 +23,7 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         <div class="col-sm-6 col-md-3 mb-4">
-                            <a class="btn btn-outline-primary btn-block" href="#">
+                            <a class="btn btn-outline-primary btn-block" href="{{route('roles.create')}}">
                                 <i class="fas fa-plus-square"></i>
                                 أضافة صلاحية
                             </a>
@@ -46,24 +46,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr id="vacationRow">
-                                    <th scope="row">1</th>
-                                    <td>Admin</td>
+                            <?php $i = 0;?>
+                            @foreach ($roles as $key => $role)
+                                    <?php $i++;?>
+                                <tr>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $role->name }}</td>
                                     <td>
                                         <!-- Edit -->
                                         <a class="btn btn-outline-info btn-sm"
-                                            href="#">
+                                           href="#">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                              
+
                                         <!-- Delete -->
                                         <a class="modal-effect btn btn-outline-danger btn-sm" data-effect="effect-scale"
-                                            data-toggle="modal" href="#">
+                                           data-toggle="modal" href="#">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
-                                    
+
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div><!-- bd -->
