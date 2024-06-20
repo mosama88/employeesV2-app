@@ -14,7 +14,14 @@ class PermissionTableSeeder extends Seeder
     /**
      * List of permissions to add.
      */
-    private $permissions = [
+
+
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
+        $permissions = [
         'الأعدادت العامه',
         'العطلات الرسميه',
         'الدرجات الوظيفية',
@@ -34,14 +41,11 @@ class PermissionTableSeeder extends Seeder
         'المرفقات',
         'تحميل المرفق'
     ];
+        foreach ($permissions as $permission) {
 
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
-    {
-        foreach ($this->permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
+
+
     }
 }
