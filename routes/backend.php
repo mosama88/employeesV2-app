@@ -82,15 +82,15 @@ Route::middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
     ##################################### Start Dashboard Profile ######################
     Route::resource('/jobs', JobController::class);
     ##################################### End Dashboard Profile ########################
+    // Our resource routes
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
 
 });
 
 
 
 Route::middleware('auth')->group(function () {
-    // Our resource routes
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->middleware(['auth', 'verified']);
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware(['auth', 'verified']);
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware(['auth', 'verified']);

@@ -24,7 +24,7 @@
             <div class="pull-left">
                 <h2>Edit Role
                     <div class="float-end">
-                        <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+                        <a class="btn btn-primary" href="{{ route('dashboard.roles.index') }}"> Back</a>
                     </div>
                 </h2>
             </div>
@@ -43,7 +43,7 @@
         </div>
     @endif
 
-    <form action="{{ route('roles.update', $role->id) }}" method="PATCH">
+    <form action="{{ route('dashboard.roles.update', $role->id) }}" method="PATCH">
         @csrf
         <div class="row">
             <div class="col-xs-12 mb-3">

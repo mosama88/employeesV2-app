@@ -15,7 +15,7 @@
 @section('page-title', 'أضافة مستخدم')
 @section('page-link-back')
     <li class="breadcrumb-item"><a href="{{ url('admin/dashboard') }}"><i class="fas fa-home"></i></a></li>
-    <li class="breadcrumb-item"><a href="{{ route('dashboard.employees.index') }}">المستخدمين</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('dashboard.users.index') }}">المستخدمين</a></li>
 @endsection
 @section('current-page', 'أضافة مستخدم')
 
@@ -41,12 +41,12 @@
 
 
                 <div class="card-body pt-0">
-                    <form id="employeeForm" action="{{ route('users.store') }}" method="POST">
+                    <form id="employeeForm" action="{{ route('dashboard.users.store') }}" method="POST">
                         @csrf
 
                         {{-- Success Message --}}
                         <div id="successMessage" class="alert alert-success d-none" role="alert">
-                            تم أضافة بيانات المستخدم بنجاح <a href="{{ route('users.index') }}" class="alert-link">أضغط هنا لمشاهدة الأضافة</a>
+                            تم أضافة بيانات المستخدم بنجاح <a href="{{ route('dashboard.users.index') }}" class="alert-link">أضغط هنا لمشاهدة الأضافة</a>
                         </div>
 
                         <div class="row">
@@ -109,7 +109,7 @@
                                 </button>
                             </div>
                             <div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
-                                <a href="{{ route('users.index') }}" class="btn btn-info btn-with-icon btn-block">
+                                <a href="{{ route('dashboard.users.index') }}" class="btn btn-info btn-with-icon btn-block">
                                     <i class="typcn typcn-arrow-back-outline"></i> رجوع
                                 </a>
                             </div>

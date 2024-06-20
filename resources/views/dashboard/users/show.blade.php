@@ -15,7 +15,7 @@
 @section('page-title', 'عرض صلاحيات مستخدم')
 @section('page-link-back')
     <li class="breadcrumb-item"><a href="{{ url('admin/dashboard') }}"><i class="fas fa-home"></i></a></li>
-    <li class="breadcrumb-item"><a href="{{ route('dashboard.employees.index') }}">المستخدمين</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('dashboard.users.index') }}">المستخدمين</a></li>
 @endsection
 @section('current-page', 'عرض صلاحيات مستخدم')
 
@@ -25,7 +25,7 @@
             <div class="pull-left">
                 <h2>Show User</h2>
                 <div class="float-end">
-                    <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+                    <a class="btn btn-primary" href="{{ route('dashboard.users.index') }}"> Back</a>
                 </div>
             </div>
         </div>

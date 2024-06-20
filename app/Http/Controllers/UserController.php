@@ -27,24 +27,26 @@ class UserController extends Controller
 
 
 
-
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:roles,name',
-            'permission' => 'required|array',
-            'roles' => 'required',
-            'status' => 'required'
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required'
         ]);
 
-        $role = Role::create(['name' => $request->input('name')]);
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
 
-        // Sync permissions by name
-        $role->syncPermissions($request->input('permission'));
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
 
-        return redirect()->route('roles.index')
-            ->with('success', 'Role created successfully');
+        return redirect()->route('dashboard.users.index')
+            ->with('success','User created successfully');
     }
+
+
 
 
     public function show($id)
@@ -84,14 +86,14 @@ class UserController extends Controller
 
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('users.index')
+        return redirect()->route('dashboard.users.index')
             ->with('success','User updated successfully');
     }
 
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('users.index')
+        return redirect()->route('dashboard.users.index')
             ->with('success','User deleted successfully');
     }
 }

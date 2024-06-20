@@ -11,7 +11,7 @@
 @section('page-title', 'أضافة صلاحية')
 @section('page-link-back')
     <li class="breadcrumb-item"><a href="{{ url('admin/dashboard') }}"><i class="fas fa-home"></i></a></li>
-    <li class="breadcrumb-item"><a href="{{ route('dashboard.employees.index') }}">الصلاحيات</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('dashboard.roles.index') }}">الصلاحيات</a></li>
 @endsection
 @section('current-page', 'أضافة صلاحية')
 
@@ -24,12 +24,12 @@
                     <h4 class="card-title mb-1 text-center">أدخل صلاحية جديده</h4>
                 </div>
                 <div class="card-body pt-0">
-                    <form action="{{ route('roles.store') }}" method="POST">
+                    <form action="{{ route('dashboard.roles.store') }}" method="POST">
                         @csrf
 
                         {{-- Success Message --}}
                         <div id="successMessage" class="alert alert-success d-none" role="alert">
-                            تم أضافة الصلاحية بنجاح <a href="{{ route('users.index') }}" class="alert-link">أضغط هنا لمشاهدة الأضافة</a>
+                            تم أضافة الصلاحية بنجاح <a href="{{ route('dashboard.roles.index') }}" class="alert-link">أضغط هنا لمشاهدة الأضافة</a>
                         </div>
 
                         <div class="row">
@@ -45,10 +45,10 @@
                                 <li><a href="#">أضف صلاحية</a>
                                     <ul>
                                         <li>
-                                    @foreach ($permission as $value)
+                                    @foreach($permission as $permissions)
                                         <label>
-                                            <input type="checkbox" name="permission[]" value="{{ $value->id }}" class="name">
-                                            {{ $value->name }}</label>
+                                            <input type="checkbox" name="permission[]" value="{{ $permissions->id }}" class="name">
+                                            {{ $permissions->name }}</label>
                                         <br />
                                     @endforeach
                                         </li>
@@ -66,7 +66,7 @@
                                 </button>
                             </div>
                             <div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
-                                <a href="{{ route('users.index') }}" class="btn btn-info btn-with-icon btn-block">
+                                <a href="{{ route('dashboard.roles.index') }}" class="btn btn-info btn-with-icon btn-block">
                                     <i class="typcn typcn-arrow-back-outline"></i> رجوع
                                 </a>
                             </div>

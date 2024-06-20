@@ -23,7 +23,7 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         <div class="col-sm-6 col-md-3 mb-4">
-                            <a class="btn btn-outline-primary btn-block" href="{{route('users.create')}}">
+                            <a class="btn btn-outline-primary btn-block" href="{{route('dashboard.users.create')}}">
                                 <i class="fas fa-plus-square"></i>
                                 أضافة مستخدم
                             </a>
@@ -66,14 +66,14 @@
                                     </td>
                                     <td>
                                         <!-- Show -->
-                                        <a class="btn btn-outline-success btn-sm"
-                                           href="{{ route('users.show',$user->id) }}">
-                                            <i class="fas fa-edit"></i>
+                                        <a class="btn btn-outline-primary btn-sm"
+                                           href="{{ route('dashboard.users.show',$user->id) }}">
+                                            <i class="fas fa-eye"></i>
                                         </a>
 
                                         <!-- Edit -->
                                         <a class="btn btn-outline-info btn-sm"
-                                           href="{{ route('users.edit',$user->id) }}">
+                                           href="{{ route('dashboard.users.edit',$user->id) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
 

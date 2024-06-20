@@ -23,7 +23,7 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         <div class="col-sm-6 col-md-3 mb-4">
-                            <a class="btn btn-outline-primary btn-block" href="{{route('roles.create')}}">
+                            <a class="btn btn-outline-primary btn-block" href="{{route('dashboard.roles.create')}}">
                                 <i class="fas fa-plus-square"></i>
                                 أضافة صلاحية
                             </a>
@@ -46,24 +46,32 @@
                                 <tr>
                                     <td>{{ $role->name }}</td>
                                     <td>
-                                        <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
-                                            <a class="btn btn-info" href="{{ route('roles.show', $role->id) }}">عرض الصلاحية</a>
-                                                <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">تعديل</a>
+                                <form action="{{ route('dashboard.roles.destroy', $role->id) }}" method="POST">
+                                    <a class="btn btn-outline-success btn-sm"  href="{{ route('dashboard.roles.show', $role->id) }}">عرض الصلاحية</a>
+                                        <a class="btn btn-outline-primary btn-sm" href="{{ route('dashboard.roles.edit', $role->id) }}">تعديل</a>
 
 
-                                            @csrf
-                                            @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">حذف</button>
-                                        </form>
+                                    @csrf
+                                    @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">حذف</button>
+                                </form>
                                     </td>
+
+
+
                                 </tr>
                             @endforeach
                         </table>
 
                         {!! $roles->render() !!}
                         @endsection
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-@section('scripts')
+        @section('scripts')
     <!-- Internal Select2.min js -->
     <script src="{{ asset('dashboard/assets/js/projects/vacations.js') }}"></script>
 
